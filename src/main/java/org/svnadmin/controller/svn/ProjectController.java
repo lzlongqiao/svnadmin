@@ -26,7 +26,6 @@ import java.util.List;
  * @since 1.0.0
  */
 @Controller
-@RequestMapping("/")
 public class ProjectController extends BaseController {
 
     @Autowired

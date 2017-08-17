@@ -35,7 +35,6 @@ import org.svnadmin.util.UsrProvider;
  * @since 1.0.0
  */
 @Controller
-@RequestMapping("/")
 public class RepController extends BaseController {
 
     @Autowired

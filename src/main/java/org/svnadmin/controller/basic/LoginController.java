@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletRequest;
  * @版本: 1.0.0.
  */
 @Controller
-@RequestMapping("/")
 public class LoginController extends BaseController{
 
     @Autowired

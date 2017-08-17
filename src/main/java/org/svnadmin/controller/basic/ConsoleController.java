@@ -19,7 +19,6 @@ import org.svnadmin.util.SessionUtils;
  * @since 1.0.0
  */
 @Controller
-@RequestMapping("/")
 public class ConsoleController extends BaseController {
 
     @Autowired

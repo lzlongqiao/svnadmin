@@ -34,7 +34,6 @@ import org.svnadmin.util.SessionUtils;
  * @since 1.0.0
  */
 @Controller
-@RequestMapping("/")
 public class UsrController extends BaseController {
 
     @Autowired

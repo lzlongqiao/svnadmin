@@ -31,7 +31,6 @@ import org.svnadmin.util.EncryptUtil;
  * @since 1.0.0
  */
 @Controller
-@RequestMapping("/")
 public class ProjectUsrController extends BaseController {
 
     @Autowired

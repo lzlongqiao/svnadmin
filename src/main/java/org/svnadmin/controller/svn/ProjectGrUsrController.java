@@ -31,7 +31,6 @@ import org.svnadmin.service.UsrService;
  * @since 1.0.0
  */
 @Controller
-@RequestMapping("/")
 public class ProjectGrUsrController extends BaseController {
 
     @Autowired
