@@ -13,7 +13,7 @@
 	<!-- 注解驱动 -->
     <mvc:annotation-driven />
     <!-- 自动扫描 -->
-    <context:component-scan base-package="org.svnadmin.controller,org.svnadmin.util"/>
+    <context:component-scan base-package="org.svnadmin.controller"/>
     <!-- 将静态资源的处理经由spring MVC框架交回Web应用服务器处理 -->
     <mvc:default-servlet-handler />
 

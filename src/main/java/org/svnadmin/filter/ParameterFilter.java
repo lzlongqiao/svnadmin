@@ -1,4 +1,4 @@
-package org.svnadmin.util.filter;
+package org.svnadmin.filter;
 
 import java.io.IOException;
 
