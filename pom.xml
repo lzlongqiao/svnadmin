@@ -69,9 +69,9 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-    		<groupId>org.springframework</groupId>
-    		<artifactId>spring-context-support</artifactId>
-    		<version>${spring.version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<!-- spring aop -->
 		<dependency>
@@ -116,7 +116,6 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${jackson-version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -127,7 +126,6 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>${commons-dbcp.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>commons-pool</groupId>
 			<artifactId>commons-pool</artifactId>
@@ -163,41 +161,23 @@
 			<type>jar</type>
 			<scope>runtime</scope>
 		</dependency>
-
 		<!-- hibernate验证库 -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate-validator.version}</version>
 		</dependency>
-		<!--
-		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>sqljdbc</artifactId>
-			<version>2005</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc</artifactId>
-			<version>${jdbc.oracle.version}</version>
-			<type>jar</type>
-			<scope>runtime</scope>
-		</dependency>
-		-->
-		<!-- End JDBC -->
-
 	</dependencies>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<resources>
-	      <resource>
-	        <directory>src/main/resources</directory>
-	        <filtering>true</filtering>
-	      </resource>
-	    </resources>
-   		<plugins>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -226,7 +206,7 @@
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -241,7 +221,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -260,7 +240,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
