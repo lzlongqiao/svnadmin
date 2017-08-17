@@ -42,8 +42,7 @@ public class Constants {
 	/**
 	 * 项目默认的组
 	 */
-	public static final String[] GROUPS = { GROUP_MANAGER, "developer",
-			"tester" };
+	public static final String[] GROUPS = { GROUP_MANAGER, "developer", "tester" };
 
 	/**
 	 * 管理员角色代码

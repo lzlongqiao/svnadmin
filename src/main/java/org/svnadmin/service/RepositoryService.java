@@ -5,6 +5,8 @@ package org.svnadmin.service;
 
 import java.io.File;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -52,17 +54,16 @@ public class RepositoryService{
 	 */
 	private final Logger LOG = Logger.getLogger(RepositoryService.class);
 	
-	
 	/**
 	 * 项目DAO
 	 */
 	@Resource(name=PjDao.BEAN_NAME)
-	PjDao pjDao;
+	private PjDao pjDao;
 	/**
 	 * 项目用户DAO
 	 */
 	@Resource(name=PjUsrDao.BEAN_NAME)
-	PjUsrDao pjUsrDao;
+	private PjUsrDao pjUsrDao;
 	
 	/**
 	 * 获取svn仓库
@@ -115,9 +116,9 @@ public class RepositoryService{
 		
 		Usr usr = UsrProvider.getCurrentUsr();
 		
-		String svnUrl = parseURL(pj.getUrl());
-		if(StringUtils.isBlank(svnUrl)){
-			throw new RuntimeException(I18N.getLbl("pj.error.url", "URL不可以为空"));
+		File svnReps = new File(pj.getPath());
+		if(!svnReps.exists()){
+			throw new RuntimeException(I18N.getLbl("pj.error.path", "仓库路径不可以为空"));
 		}
 		String svnUserName = usr.getUsr();
 		String svnPassword = usr.getPsw();
@@ -130,9 +131,8 @@ public class RepositoryService{
 		}
 		svnPassword = EncryptUtil.decrypt(svnPassword);//解密
 		
-    	 SVNRepository repository = SVNRepositoryFactory.create(SVNURL.parseURIDecoded(svnUrl));
-	     ISVNAuthenticationManager authManager = 
-	                  SVNWCUtil.createDefaultAuthenticationManager(svnUserName, svnPassword);
+    	 SVNRepository repository = SVNRepositoryFactory.create(SVNURL.fromFile(svnReps));
+	     ISVNAuthenticationManager authManager = SVNWCUtil.createDefaultAuthenticationManager();
 	     repository.setAuthenticationManager(authManager);
 	     
 	     return repository;
@@ -169,7 +169,6 @@ public class RepositoryService{
 	 * @param path 相对仓库根目录的路径
 	 * @return 目录或文件系统
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Collection<SVNDirEntry> getDir(String pj,String path){
 		if(StringUtils.isBlank(path)){
 			path = "/";//root
@@ -177,11 +176,12 @@ public class RepositoryService{
 		if(!path.startsWith("/")){
 			path = "/"+path;
 		}
+		List<SVNDirEntry> dirEntries = new LinkedList<SVNDirEntry>();
 		SVNRepository repository = null;
 		try {
 			repository = this.getRepository(pj);
 			SVNProperties properties = new SVNProperties();
-	    	return repository.getDir(path, SVNRevision.HEAD.getNumber(), properties, (Collection) null);
+	    	return repository.getDir(path, SVNRevision.HEAD.getNumber(), properties, SVNDirEntry.DIRENT_ALL, dirEntries);
     	}catch(SVNAuthenticationException e){
     		e.printStackTrace();
 			throw new RuntimeException(I18N.getLbl("svn.auth.error", "认证失败"));
@@ -206,8 +206,7 @@ public class RepositoryService{
      */
 	public static SVNURL createLocalRepository(File respository){
 		try {
-			return SVNRepositoryFactory.createLocalRepository(respository, true,
-					false);
+			return SVNRepositoryFactory.createLocalRepository(respository, true,false);
 		} catch (SVNException e) {
 			throw new RuntimeException(I18N.getLbl("pj.save.error.createRepository","创建仓库失败.{0}",new Object[]{respository.getAbsolutePath()}) 
 			+ " : "+ e.getMessage());

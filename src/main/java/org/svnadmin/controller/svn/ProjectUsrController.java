@@ -1,6 +1,11 @@
 package org.svnadmin.controller.svn;
 
-import org.apache.commons.lang.StringUtils;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,19 +17,12 @@ import org.svnadmin.common.annotation.AdminAuthPassport;
 import org.svnadmin.common.entity.PageBean;
 import org.svnadmin.common.util.HttpUtils;
 import org.svnadmin.common.web.BaseController;
-import org.svnadmin.entity.Pj;
 import org.svnadmin.entity.PjUsr;
 import org.svnadmin.entity.Usr;
 import org.svnadmin.service.PjService;
 import org.svnadmin.service.PjUsrService;
 import org.svnadmin.service.UsrService;
 import org.svnadmin.util.EncryptUtil;
-import org.svnadmin.util.SessionUtils;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Map;
 
 /**
  * SVN项目用户管理控制器

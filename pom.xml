@@ -7,30 +7,25 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<war.name>svnadmin</war.name>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!--war包是否把classes打包 -->
 		<war.archiveClasses>true</war.archiveClasses>
-
-		<svnkit.version>1.7.6</svnkit.version>
+		<svnkit.version>1.8.14</svnkit.version>
 		<spring.version>3.2.18.RELEASE</spring.version>
 		<junit.version>4.8.2</junit.version>
 		<commons-lang.version>2.6</commons-lang.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<commons-pool.version>1.5.5</commons-pool.version>
 		<commons-io.version>2.0.1</commons-io.version>
+		<commons-codec.version>1.10</commons-codec.version>
 		<commons-logging.version>1.1.1</commons-logging.version>
 		<log4j.version>1.2.16</log4j.version>
 		<!-- 引入JSON 版本号 -->
 		<jackson-version>1.9.13</jackson-version>
 		<!-- servlet-api 版本号 -->
-		<servlet-api-version>6.0.37</servlet-api-version>
+		<servlet-api-version>3.1.0</servlet-api-version>
 		<!-- jstl版本号 -->
 		<jstl.version>1.2</jstl.version>
-		<!-- javaee-api 版本号 -->
-		<javaee-api.version>7.0</javaee-api.version>
-		<!-- jsp-api 版本号 -->
-		<jsp-api-version>6.0.37</jsp-api-version>
 		<!-- jdbc -->
 		<jdbc.mysql.version>5.1.14</jdbc.mysql.version>
 		<jdbc.oracle.version>10.2.0.3.0</jdbc.oracle.version>
@@ -40,37 +35,23 @@
 	</properties>
 
 	<dependencies>
-		<!-- 导入java ee jar 包 -->
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>${javaee-api.version}</version>
-		</dependency>
 		<!-- JSTL标签类 -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>${jstl.version}</version>
 		</dependency>
-		<!-- servlet-api -->
 		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>servlet-api</artifactId>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
 			<version>${servlet-api-version}</version>
+			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>${jsp-api-version}</version>
-		</dependency>
-		
 		<dependency>
 			<groupId>org.tmatesoft.svnkit</groupId>
 			<artifactId>svnkit</artifactId>
 			<version>${svnkit.version}</version>
 		</dependency>
-		
 		<!-- spring begin -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -87,30 +68,17 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<!-- only for jdk5.0 -->
 		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-annotation_1.0_spec</artifactId>
-			<version>1.1.1</version>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-context-support</artifactId>
+    		<version>${spring.version}</version>
 		</dependency>
-
 		<!-- spring aop -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.6.8</version>
-		</dependency>
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-nodep</artifactId>
-			<version>2.2</version>
-		</dependency>
-
 		<!-- spring orm -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -129,14 +97,17 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
 		<!-- optional datasource -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.8</version>
+		</dependency>
 		<!-- spring end -->
 
 		<!-- 引入JSON -->
@@ -150,7 +121,6 @@
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>${commons-lang.version}</version>
-			<type>jar</type>
 		</dependency>
 		<dependency>
 			<groupId>commons-dbcp</groupId>
@@ -162,14 +132,17 @@
 			<groupId>commons-pool</groupId>
 			<artifactId>commons-pool</artifactId>
 			<version>${commons-pool.version}</version>
-			<type>jar</type>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>${commons-io.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commons-codec.version}</version>
+		</dependency>
 		<!-- logger -->
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -230,7 +203,7 @@
 	</repositories>
 
 	<build>
-		<finalName>${war.name}</finalName>
+		<finalName>${project.artifactId}</finalName>
 		<resources>
 	      <resource>
 	        <directory>src/main/resources</directory>
@@ -262,8 +235,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>1.7</source>
+					<target>1.7</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
@@ -328,7 +301,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			
 		</plugins>
 
 	</build>

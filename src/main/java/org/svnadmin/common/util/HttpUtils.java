@@ -1,21 +1,20 @@
 package org.svnadmin.common.util;
 
-import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.apache.log4j.Logger;
-import org.springframework.http.HttpStatus;
-
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.io.output.ByteArrayOutputStream;
 
 /**
  * @ClassName: HttpUtils
@@ -25,8 +24,6 @@ import java.util.Set;
  * @version V1.0
  */
 public class HttpUtils {
-    private static Logger logger = Logger.getLogger(HttpUtils.class);
-
     /**
      * @Title: getDoGetFullUrl
      * @Description: 得到GET请求网站URL

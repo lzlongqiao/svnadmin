@@ -1,2 +1,19 @@
-target/*
-.idea/*
+# maven ignore
+target/
+*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
+# eclipse ignore
+.settings/
+.project
+.classpath
+# temp ignore
+logs/
+*.doc
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp

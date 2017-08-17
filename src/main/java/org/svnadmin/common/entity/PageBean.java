@@ -15,6 +15,10 @@ import java.util.Map;
  * @param <T>
  */
 public class PageBean<T> implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int currentPage;//第几页,即当前页
 	private int pageSize;//每页大小
 	private int beginRow;//开始取的行数

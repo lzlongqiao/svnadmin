@@ -1,5 +1,11 @@
 package org.svnadmin.controller.rep;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,17 +20,13 @@ import org.svnadmin.common.web.BaseController;
 import org.svnadmin.entity.Ajax;
 import org.svnadmin.entity.Pj;
 import org.svnadmin.entity.PjAuth;
-import org.svnadmin.entity.Usr;
-import org.svnadmin.service.*;
+import org.svnadmin.service.DefaultTreeService;
+import org.svnadmin.service.PjAuthService;
+import org.svnadmin.service.PjGrService;
+import org.svnadmin.service.PjService;
+import org.svnadmin.service.UsrService;
 import org.svnadmin.util.SessionUtils;
 import org.svnadmin.util.UsrProvider;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.List;
-import java.util.Map;
 
 /**
  * SVN项目资源权限控制器
@@ -44,11 +46,6 @@ public class RepController extends BaseController {
     private PjGrService pjGrService;
     @Autowired
     private PjAuthService pjAuthService;
-    /**
-     * 仓库服务层
-     */
-    @Autowired
-    private RepositoryService repositoryService;
     @Autowired
     private DefaultTreeService treeService;
 

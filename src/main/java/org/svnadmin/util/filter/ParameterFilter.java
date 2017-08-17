@@ -1,13 +1,18 @@
 package org.svnadmin.util.filter;
 
-import org.apache.log4j.Logger;
-import org.svnadmin.common.util.PrintUtils;
+import java.io.IOException;
 
-import javax.servlet.*;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+import org.svnadmin.common.util.PrintUtils;
 
 /**
  * @ClassName: ParameterFilter
@@ -19,7 +24,6 @@ import java.io.IOException;
 @WebFilter(filterName="ParameterFilter",urlPatterns="/*")
 public class ParameterFilter implements Filter {
 	
-	private static Logger logger = Logger.getLogger(ParameterFilter.class);
 
 	public void doFilter(ServletRequest request, ServletResponse response,
 						 FilterChain filterChain) throws IOException, ServletException {

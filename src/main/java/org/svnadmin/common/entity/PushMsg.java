@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PushMsg  implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Object info;// 主信息
 	private Boolean status;// 状态
 	private String code;//CODE状态

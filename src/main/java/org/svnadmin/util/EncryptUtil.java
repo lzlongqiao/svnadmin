@@ -1,7 +1,7 @@
 package org.svnadmin.util;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import org.apache.commons.codec.digest.DigestUtils;
+
 
 /**
  * 加密工具
@@ -109,12 +109,6 @@ public class EncryptUtil {
 	 * @return 密文
 	 */
 	public static String encriptSHA1(String str) {
-		try {
-			return new sun.misc.BASE64Encoder().encode(MessageDigest
-					.getInstance("SHA1").digest(str.getBytes()));
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		return DigestUtils.sha1Hex(str);
 	}
 }
