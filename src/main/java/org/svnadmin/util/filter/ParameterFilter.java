@@ -2,16 +2,13 @@ package org.svnadmin.util.filter;
 
 import java.io.IOException;
 
-import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.filter.OncePerRequestFilter;
 import org.svnadmin.common.util.PrintUtils;
 
 /**
@@ -22,25 +19,20 @@ import org.svnadmin.common.util.PrintUtils;
  * @version V1.0
  */
 @WebFilter(filterName="ParameterFilter",urlPatterns="/*")
-public class ParameterFilter implements Filter {
-	
+public class ParameterFilter extends OncePerRequestFilter {
 
-	public void doFilter(ServletRequest request, ServletResponse response,
-						 FilterChain filterChain) throws IOException, ServletException {
-		HttpServletRequest rq = (HttpServletRequest)request;
-		HttpServletResponse rp = (HttpServletResponse)response;
-		if(!rq.getRequestURI().contains(".")){
-			PrintUtils.print(rq);
-			if(rq.getRequestURI().endsWith("/")){
-				rp.sendRedirect("login");
+	@Override
+	protected void doFilterInternal(HttpServletRequest request,
+			HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
+		if(!request.getRequestURI().contains(".")){
+			PrintUtils.print(request);
+			if(request.getRequestURI().endsWith("/")){
+				response.sendRedirect("login");
 				return;
 			}
 		}
 		filterChain.doFilter(request, response);
 	}
-
-	public void init(FilterConfig arg0) throws ServletException {}
-
-	public void destroy() {}
 }
 

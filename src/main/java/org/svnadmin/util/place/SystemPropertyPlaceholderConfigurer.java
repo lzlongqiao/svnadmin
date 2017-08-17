@@ -18,6 +18,7 @@ public class SystemPropertyPlaceholderConfigurer extends PropertyPlaceholderConf
 
 	protected void processProperties(ConfigurableListableBeanFactory beanFactory, Properties props) throws BeansException {
 		PropUtils.initConfigProperties(props);
+		super.processProperties(beanFactory, props);
 	}
 
 }
