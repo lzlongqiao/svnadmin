@@ -189,35 +189,12 @@
 
 	</dependencies>
 
-	<repositories>
-		<repository>
-			<id>svnkit_repository</id>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<url>http://maven.svnkit.com/maven2/</url>
-		</repository>
-	</repositories>
-
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<resources>
 	      <resource>
 	        <directory>src/main/resources</directory>
 	        <filtering>true</filtering>
-	        <includes>
-	          <include>version.properties</include>
-	        </includes>
-	      </resource>
-	      <resource>
-	        <directory>src/main/resources</directory>
-	        <filtering>false</filtering>
-	        <excludes>
-	          <exclude>version.properties</exclude>
-	        </excludes>
 	      </resource>
 	    </resources>
    		<plugins>
@@ -289,7 +266,7 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<descriptors>
-						<descriptor>${project.build.outputDirectory}/META-INF/zip.xml</descriptor>
+						<descriptor>src/main/assembly/assembly.xml</descriptor>
 					</descriptors>
 				</configuration>
 				<executions>
@@ -302,6 +279,5 @@
 				</executions>
 			</plugin>
 		</plugins>
-
 	</build>
 </project>
