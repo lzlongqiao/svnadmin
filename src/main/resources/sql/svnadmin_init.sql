@@ -55,8 +55,6 @@ CREATE TABLE `pj` (
 # Data for table "pj"
 #
 
-INSERT INTO `pj` VALUES ('edu','/svn/edu','svn://hpboys.com/edu','svn','Dubbo学习案例');
-
 #
 # Source for table "pj_gr"
 #
@@ -73,8 +71,6 @@ CREATE TABLE `pj_gr` (
 #
 # Data for table "pj_gr"
 #
-
-INSERT INTO `pj_gr` VALUES ('edu','developer','developer'),('edu','manager','manager'),('edu','tester','tester');
 
 #
 # Source for table "pj_gr_auth"
