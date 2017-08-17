@@ -5,6 +5,5 @@
 	http://www.springframework.org/schema/beans/spring-beans.xsd ">
 
     <import resource="classpath:spring/spring-config.xml" />
-    <!--<import resource="classpath:spring/spring-mybatis.xml" />-->
 
 </beans>
